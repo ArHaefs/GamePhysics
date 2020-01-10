@@ -26,7 +26,6 @@ public class MovementTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(movement);
         body.AddForce(movement, ForceMode.Force);
     }
 }
