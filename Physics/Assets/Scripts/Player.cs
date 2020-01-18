@@ -16,7 +16,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        body.velocity = Linked.GetComponent<Rigidbody>().velocity;
-        Linked.GetComponent<Rigidbody>().velocity = body.velocity;
+        //body.velocity = Linked.GetComponent<Rigidbody>().velocity;
+        //Linked.GetComponent<Rigidbody>().velocity = body.velocity;
+        body.velocity -= new Vector3(0, 0.2f, 0);
+        Debug.Log(body.velocity);
     }
 }
