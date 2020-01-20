@@ -4,21 +4,41 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject Linked;
     [SerializeField]
-    Rigidbody body;
+    LinkedMovementManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
+    }
+
+    public void PlayerRespawn()
+    {
+        manager.CutLinked();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //body.velocity = Linked.GetComponent<Rigidbody>().velocity;
-        //Linked.GetComponent<Rigidbody>().velocity = body.velocity;
-        body.velocity -= new Vector3(0, 0.2f, 0);
-        Debug.Log(body.velocity);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 10000))
+            {
+                if (hit.transform.gameObject.GetComponent<MoveableCube>() && !hit.transform.gameObject.GetComponent<Player>())
+                {
+                    manager.SetLinked(hit.transform.gameObject.GetComponent<MoveableCube>());
+                }
+            }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            manager.CutLinked();
+        }
     }
 }
+

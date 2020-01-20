@@ -6,38 +6,54 @@ public class MoverFloor : MonoBehaviour
 {
 
     [SerializeField]
-    [Range(-10, 10)]
-    int downAndUp, leftAndRight;
+    [Range(0, 100)]
+    int acceleration;
+    [SerializeField]
+    bool resistance;
+    [Range(0, 0.9f)]
+    [SerializeField]
+    float resistanceStrength;
 
-    GameObject Moving;
+    GameObject moving;
+    Vector3 movement;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<MovementTest>())
+        if (collision.gameObject.GetComponent<MoveableCube>())
         {
-            collision.gameObject.GetComponent<MovementTest>().changeMovementForce(new Vector3(leftAndRight, 0, downAndUp));
-            Moving = collision.gameObject;
+            movement = transform.forward * acceleration;
+            collision.gameObject.GetComponent<MoveableCube>().ChangeMovementForce(movement, this.gameObject);
+            moving = collision.gameObject;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.GetComponent<MovementTest>())
+        if (collision.gameObject.GetComponent<MoveableCube>() && moving != null)
         {
-            collision.gameObject.GetComponent<MovementTest>().changeMovementForce(new Vector3(-leftAndRight, 0, -downAndUp));
-            Moving = null;
+            movement = -transform.forward * acceleration;
+            collision.gameObject.GetComponent<MoveableCube>().ChangeMovementForce(movement, null);
+            moving = null;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopInfluence()
     {
+        moving = null;
+    }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        /*if(moving && resistance)
+        {
+            moving.GetComponent<MoveableCube>().movement -= moving.GetComponent<MoveableCube>().linkedMovement * resistanceStrength;
+        }*/
     }
 }
