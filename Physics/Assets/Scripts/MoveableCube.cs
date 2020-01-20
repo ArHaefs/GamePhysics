@@ -14,11 +14,10 @@ public class MoveableCube : MonoBehaviour
     public bool linkedGrounded = false;
     public GameObject player;
 
-    Vector3 respawnPoint;
+    public Vector3 respawnPoint;
 
     GameObject movedBy;
     Vector3 movedByVector;
-    // Start is called before the first frame update
     void Start()
     {
         respawnPoint = body.transform.position;
@@ -30,6 +29,7 @@ public class MoveableCube : MonoBehaviour
         {
             movedBy.SendMessage("StopInfluence");
             movement -= movedByVector;
+            movedBy = null;
         }
 
         movedByVector = vect;
@@ -54,6 +54,7 @@ public class MoveableCube : MonoBehaviour
             linkedGrounded = false;
             body.useGravity = true;
         }
+        player = this.player;
     }
 
     public bool GetLinkedGrounded()
@@ -61,7 +62,6 @@ public class MoveableCube : MonoBehaviour
         return linkedGrounded;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
 
@@ -70,7 +70,7 @@ public class MoveableCube : MonoBehaviour
             CheckIfGrounded();
             body.AddForce(movement * 10, ForceMode.Force);
         }
-        if (body.transform.position.y < -30)
+        if (body.transform.position.y < -10)
         {
             Respawn();
         }
@@ -92,6 +92,7 @@ public class MoveableCube : MonoBehaviour
         body.velocity *= 0;
         previousDownVelocity = 1;
         movement *= 0;
+        player = null;
         body.position = respawnPoint;
     }
 }

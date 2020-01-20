@@ -8,10 +8,6 @@ public class LinkedMovementManager : MonoBehaviour
     public MoveableCube moveableCube;
     bool isLinked = false;
     bool oneGrounded = false;
-    void Start()
-    {
-
-    }
 
     public void SetLinked(MoveableCube newCube)
     {
@@ -89,7 +85,6 @@ public class LinkedMovementManager : MonoBehaviour
 
     void NewVelocity(Vector3 velocityPlayer, Vector3 velocityCube)
     {
-        //Debug.Log("Player: " + velocityPlayer + " - Cube: " + velocityCube);
         float x = velocityPlayer.x;
         float y = velocityPlayer.y;
         float z = velocityPlayer.z;

@@ -7,18 +7,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     LinkedMovementManager manager;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     public void PlayerRespawn()
     {
         manager.CutLinked();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
