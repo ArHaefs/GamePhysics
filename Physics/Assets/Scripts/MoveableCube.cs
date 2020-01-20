@@ -64,13 +64,13 @@ public class MoveableCube : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if (!isLinked)
         {
             CheckIfGrounded();
+            body.AddForce(movement * 10, ForceMode.Force);
         }
-        if (!isLinked) body.AddForce(movement * 10, ForceMode.Force);
-
-        if(body.transform.position.y < -30)
+        if (body.transform.position.y < -30)
         {
             Respawn();
         }
@@ -78,8 +78,11 @@ public class MoveableCube : MonoBehaviour
 
     public void CheckIfGrounded()
     {
-        if (Mathf.Approximately(previousDownVelocity, 0) && Mathf.Approximately(0, body.velocity.y)) grounded = true;
-        if (!movedBy) grounded = false;
+        if (!linkedGrounded)
+        {
+            if (!movedBy) grounded = false;
+            if (Mathf.Approximately(previousDownVelocity, 0) && Mathf.Approximately(0, body.velocity.y)) grounded = true;
+        }
         previousDownVelocity = body.velocity.y;
     }
 
