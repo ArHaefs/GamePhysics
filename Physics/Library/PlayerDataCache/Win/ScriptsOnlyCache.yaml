@@ -46,17 +46,17 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11698}
+      Script: {instanceID: 11718}
     - Class: 114
-      Script: {instanceID: 12016}
+      Script: {instanceID: 12036}
     - Class: 114
-      Script: {instanceID: 12312}
+      Script: {instanceID: 12332}
     - Class: 114
-      Script: {instanceID: 12372}
+      Script: {instanceID: 12392}
     - Class: 114
-      Script: {instanceID: 12776}
+      Script: {instanceID: 12796}
     - Class: 114
-      Script: {instanceID: 12862}
+      Script: {instanceID: 12882}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 134
@@ -513,4 +513,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: A:/Projects/GamePhysics/Build/Physics.exe
+  playerPath: C:/Users/arhaefs/Desktop/PhysicAbgabe/GamePhysics/Build/Physics.exe
